@@ -75,6 +75,7 @@ module Wice
     # core workflow methods START
 
     def initialize(klass_or_relation, controller, opts = {})  #:nodoc:
+      binding.pry
       @controller = controller
 
       @relation = klass_or_relation
@@ -96,7 +97,7 @@ module Wice
       end
 
       opts[:order_direction] = opts[:order_direction].downcase if opts[:order_direction].is_a?(String)
-
+      binding.pry
       # validate :order_direction
       if opts[:order_direction] && ! (opts[:order_direction] == 'asc' || opts[:order_direction] == :asc || opts[:order_direction] == 'desc' ||
                                       opts[:order_direction] == :desc)
@@ -133,7 +134,7 @@ module Wice
       end
       # validate parameters
       opts.assert_valid_keys(@options.keys)
-
+      binding.pry
       @options.merge!(opts)
       @export_to_csv_enabled = @options[:enable_export_to_csv]
       @csv_file_name = @options[:csv_file_name]
@@ -154,7 +155,7 @@ module Wice
 
       @ar_options = {}
       @status = HashWithIndifferentAccess.new
-
+      binding.pry
       if @options[:order]
         @options[:order]           = @options[:order].to_s
         @options[:order_direction] = @options[:order_direction].to_s
@@ -172,6 +173,7 @@ module Wice
       process_params
 
       @ar_options_formed = false
+      binding.pry
     end
 
     # A block executed from within the plugin to process records of the current page.
